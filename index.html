@@ -10,25 +10,22 @@
     body {
       margin: 0;
     }
-    #fps {
+    #container {
       position: absolute;
-      top: 0px;
-      left: 5px;
-      color: black;
-      font-size: 14px;
-    }
-    .main-container {
-      position: relative;
       top: 0;
+    }
+    canvas {
+      border: 2px solid black;
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <h1 id="fps"></h1>
-    <canvas id="canvas" width="1000" height="500"></canvas>
+  <div id="container">
   </div>
 
+  <script src="lib/canvas.js"></script>
+  <script src="lib/rubit.min.js"></script>
+  <script src="core/utils.js"></script>
   <script src="core/grid.js"></script>
   <script src="core/player.js"></script>
   <script src="core/main.js"></script>

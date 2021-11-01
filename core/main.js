@@ -1,17 +1,12 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const width = canvas.width;
-const height = canvas.height;
-
 const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+  [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1],
   [1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1],
-  [1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1],
-  [1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+  [1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1],
+  [1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
   [1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1],
   [1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1],
   [1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
@@ -21,33 +16,22 @@ const map = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-const radians = (a) => a * Math.PI / 180;
+const player = new Player(320, 150, radians(80), 1, map, new Canvas(650, 325));
 
-const grid = new Grid(map);
-const player = new Player(320, 150, 0, radians(80), 500);
-
-let s;
-let a;
-
-setInterval(function () {
-  if(a || s) {
-    player.update(s, radians(a));
-  }
-}, 40);
-
-document.addEventListener('keydown', e => {
-  // e.preventDefault();
-  if (e.key == 'ArrowUp') s = 2;
-  if (e.key == 'ArrowDown') s = -2;
-  if (e.key == 'ArrowRight') a = 3;
-  if (e.key == 'ArrowLeft') a = -3;
+const joystick = new RubIt({
+  container_id: 'container',
+  type: 'dynamic',
+  area_width: '300px',
+  area_height: '300px',
+  outer_rad: '150px',
+  inner_rad: '90px',
+  outer_bg: 'radial-gradient(#56CCF2 0%, #2F80ED 100%)',
+  outer_border: 'none',
+  inner_bg: 'radial-gradient(#56CCF2 0%, #2F80ED 100%)',
+  inner_border: '1px solid #2F80ED'
 });
 
-document.addEventListener('keyup', e => {
-  if (e.key == 'ArrowRight' || e.key == 'ArrowLeft') {
-    a = 0;
-  }
-  else if (e.key == 'ArrowUp' || e.key == 'ArrowDown') {
-    s = 0;
-  }
+joystick.on('move', function (data) {
+  player.speed = fmap(data.y, 0, 1, 0, 1);
+  player.rotate = fmap(data.x, -1, 1, radians(-1), radians(1));
 });
