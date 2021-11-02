@@ -1,8 +1,16 @@
 # RayCasting
-
-[Ray casting](https://en.wikipedia.org/wiki/Ray_casting) example on html canvas with pure javascript.
+[Ray casting](https://en.wikipedia.org/wiki/Ray_casting) example with javascript.
 
 ### Try Out: [Here](https://dolmushcu.github.io/RayCasting/)
+
+## Dependencies
+- [RubIt](https://github.com/dolmushcu/RubIt)
+
+## TODO
+- [x] Touch support for mobile devices
+- [ ] Wall textures
+- [ ] Drawing floor
+- [ ] Drawing ceiling
 
 ## References
 - [Ray-Casting Tutorial For Game Development And Other Purposes
