@@ -1,10 +1,10 @@
 # RayCasting
 [Ray casting](https://en.wikipedia.org/wiki/Ray_casting) example with javascript.
 
-### Try Out: [Here](https://dolmushcu.github.io/RayCasting/)
+### Try Out: [Here](https://isengu.github.io/RayCasting/)
 
 ## Dependencies
-- [RubIt](https://github.com/dolmushcu/RubIt)
+- [RubIt](https://github.com/isengu/RubIt)
 
 ## TODO
 - [x] Touch support for mobile devices
